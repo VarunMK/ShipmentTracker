@@ -14,30 +14,47 @@ import Submitbutton from './SubmitButton';
 import Viewbutton from './ViewButton';
 
 interface IForm {
-    partner_id:'String',
-    products:'String'
+    partner_id: 'String';
+    products: 'String';
 }
-
-
 
 const Partner = () => {
     const { register, handleSubmit } = useForm();
     const toast = useToast();
     const onSubmit = async (formData: IForm) => {
         try {
-            await fetch('http://localhost:5000/addpartner',{
-                method:"POST",
-                headers:{"Content-Type":"application/json"},
-                body:JSON.stringify(formData)
+            await fetch('http://localhost:5000/addpartner', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
             }).then((data)=>{
-                toast({
-                    duration:2000,
-                    description:"Successfully Added!",
-                    status:"success",
-                    isClosable:true,
-                })
+                console.log(data.status);
+                if(data.status===201){
+                    toast({
+                        duration:2000,
+                        description:"ID already exists!",
+                        status:"error",
+                        isClosable:true,
+                    })
+                }
+                else if(data.status===200){
+                    toast({
+                        duration:2000,
+                        description:"Successfully Added!",
+                        status:"success",
+                        isClosable:true,
+                    })
+                }
+                else{
+                    toast({
+                        duration:2000,
+                        description:"An Error has occured!",
+                        status:"error",
+                        isClosable:true,
+                    })
+                }
             });
-        } catch (error) {
+        } catch (err) {
             console.log("Hi");
         }
     };
@@ -68,13 +85,17 @@ const Partner = () => {
                     <FormLabel fontWeight="light" fontSize="md">
                         Partner_ID
                     </FormLabel>
-                    <ShadowInput type="input" name="partner_id" ref={register}/>
+                    <ShadowInput
+                        type="input"
+                        name="partner_id"
+                        ref={register}
+                    />
                 </FormControl>
                 <FormControl id="products" isRequired>
                     <FormLabel fontWeight="light" fontSize="md">
                         Products
                     </FormLabel>
-                    <ShadowInput type="input" name="products" ref={register}/>
+                    <ShadowInput type="input" name="products" ref={register} />
                 </FormControl>
                 <br />
                 <Flex dir="row" justify="space-around">

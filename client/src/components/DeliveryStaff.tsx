@@ -31,17 +31,36 @@ const DeliveryStaff = () => {
     const toast = useToast();
     const onSubmit = async (formData: IForm) => {
         try {
-            await fetch('http://localhost:5000/createclient',{
+            await fetch('http://localhost:5000/adddelstaff',{
                 method:"POST",
                 headers:{"Content-Type":"application/json"},
                 body:JSON.stringify(formData)
             }).then((data)=>{
-                toast({
-                    duration:2000,
-                    description:"Successfully Added!",
-                    status:"success",
-                    isClosable:true,
-                })
+                console.log(data.status);
+                if(data.status===201){
+                    toast({
+                        duration:2000,
+                        description:"ID already exists!",
+                        status:"error",
+                        isClosable:true,
+                    })
+                }
+                else if(data.status===200){
+                    toast({
+                        duration:2000,
+                        description:"Successfully Added!",
+                        status:"success",
+                        isClosable:true,
+                    })
+                }
+                else{
+                    toast({
+                        duration:2000,
+                        description:"An Error has occured!",
+                        status:"error",
+                        isClosable:true,
+                    })
+                }
             });
         } catch (error) {
             console.log("Hi");
