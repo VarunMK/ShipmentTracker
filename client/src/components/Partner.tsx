@@ -14,21 +14,18 @@ import Submitbutton from './SubmitButton';
 import Viewbutton from './ViewButton';
 
 interface IForm {
-    client_id:'String',
-    name:'String',
-    ph_num:'String',
-    email:'String',
-    addr:'String'
+    partner_id:'String',
+    products:'String'
 }
 
 
 
-const Client = () => {
+const Partner = () => {
     const { register, handleSubmit } = useForm();
     const toast = useToast();
     const onSubmit = async (formData: IForm) => {
         try {
-            await fetch('http://localhost:5000/createclient',{
+            await fetch('http://localhost:5000/addpartner',{
                 method:"POST",
                 headers:{"Content-Type":"application/json"},
                 body:JSON.stringify(formData)
@@ -61,41 +58,23 @@ const Client = () => {
                 fontWeight="bold"
                 style={{ textAlign: 'center' }}
             >
-                Add Client
+                Add Partner
             </Text>
             <br />
             <Divider />
             <br />
             <form onSubmit={handleSubmit(onSubmit)}>
-                <FormControl id="client_id" isRequired>
+                <FormControl id="partner_id" isRequired>
                     <FormLabel fontWeight="light" fontSize="md">
-                        Client_ID
+                        Partner_ID
                     </FormLabel>
-                    <ShadowInput type="input" name="client_id" ref={register}/>
+                    <ShadowInput type="input" name="partner_id" ref={register}/>
                 </FormControl>
-                <FormControl id="name" isRequired>
+                <FormControl id="products" isRequired>
                     <FormLabel fontWeight="light" fontSize="md">
-                        Name
+                        Products
                     </FormLabel>
-                    <ShadowInput type="input" name="name" ref={register}/>
-                </FormControl>
-                <FormControl id="ph_num" isRequired>
-                    <FormLabel fontWeight="light" fontSize="md">
-                        Phone Number
-                    </FormLabel>
-                    <ShadowInput type="input" name="ph_num" ref={register}/>
-                </FormControl>
-                <FormControl id="email" isRequired>
-                    <FormLabel fontWeight="light" fontSize="md">
-                        Email
-                    </FormLabel>
-                    <ShadowInput type="input" name="email" ref={register}/>
-                </FormControl>
-                <FormControl id="addr" isRequired>
-                    <FormLabel fontWeight="light" fontSize="md">
-                        Address
-                    </FormLabel>
-                    <ShadowInput type="input" name="addr" ref={register} />
+                    <ShadowInput type="input" name="products" ref={register}/>
                 </FormControl>
                 <br />
                 <Flex dir="row" justify="space-around">
@@ -122,4 +101,4 @@ const Client = () => {
     );
 };
 
-export default Client;
+export default Partner;

@@ -14,8 +14,11 @@ import Submitbutton from './SubmitButton';
 import Viewbutton from './ViewButton';
 
 interface IForm {
-    client_id:'String',
+    DS_id:'String',
     name:'String',
+    reg_num:'String',
+    Start_date:Date,
+    Salary:number,
     ph_num:'String',
     email:'String',
     addr:'String'
@@ -23,7 +26,7 @@ interface IForm {
 
 
 
-const Client = () => {
+const DeliveryStaff = () => {
     const { register, handleSubmit } = useForm();
     const toast = useToast();
     const onSubmit = async (formData: IForm) => {
@@ -61,23 +64,41 @@ const Client = () => {
                 fontWeight="bold"
                 style={{ textAlign: 'center' }}
             >
-                Add Client
+                Add Delivery Staff
             </Text>
             <br />
             <Divider />
             <br />
             <form onSubmit={handleSubmit(onSubmit)}>
-                <FormControl id="client_id" isRequired>
+                <FormControl id="DS_id" isRequired>
                     <FormLabel fontWeight="light" fontSize="md">
-                        Client_ID
+                        DS_ID
                     </FormLabel>
-                    <ShadowInput type="input" name="client_id" ref={register}/>
+                    <ShadowInput type="input" name="DS_id" ref={register}/>
                 </FormControl>
                 <FormControl id="name" isRequired>
                     <FormLabel fontWeight="light" fontSize="md">
                         Name
                     </FormLabel>
                     <ShadowInput type="input" name="name" ref={register}/>
+                </FormControl>
+                <FormControl id="reg_num" isRequired>
+                    <FormLabel fontWeight="light" fontSize="md">
+                        Registration Number
+                    </FormLabel>
+                    <ShadowInput type="input" name="reg_num" ref={register}/>
+                </FormControl>
+                <FormControl id="Start_date" isRequired>
+                    <FormLabel fontWeight="light" fontSize="md">
+                        Start Date
+                    </FormLabel>
+                    <ShadowInput type="input" name="Start_date" ref={register}/>
+                </FormControl>
+                <FormControl id="Salary" isRequired>
+                    <FormLabel fontWeight="light" fontSize="md">
+                        Salary
+                    </FormLabel>
+                    <ShadowInput type="input" name="Salary" ref={register}/>
                 </FormControl>
                 <FormControl id="ph_num" isRequired>
                     <FormLabel fontWeight="light" fontSize="md">
@@ -122,4 +143,4 @@ const Client = () => {
     );
 };
 
-export default Client;
+export default DeliveryStaff;
