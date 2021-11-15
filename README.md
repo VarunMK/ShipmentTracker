@@ -1,4 +1,4 @@
-# ShipmentTracker
+# Shipment Tracker
 Shipment Tracker project for the DBMS course.
 ### To start client:
 `cd client`<br>
