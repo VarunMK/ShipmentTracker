@@ -70,12 +70,12 @@ const Client = () => {
             const resp2 = await fetch('http://localhost:5000/getcolname', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({table_name:'Client Details'}),
+                body: JSON.stringify({table_name:'order_details'}),
             });
             const resp = await fetch('http://localhost:5000/getdetails', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({table_name:'Client Details',client_id:c_id,pass:password}),
+                body: JSON.stringify({table_name:'order_details',client_id:c_id,pass:password}),
             });
             const jsonData = await resp.json();
             const jsonData2=await resp2.json();

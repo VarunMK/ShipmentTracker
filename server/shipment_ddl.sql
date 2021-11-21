@@ -102,3 +102,18 @@ CREATE TABLE employee(
     W_id VARCHAR,
     FOREIGN KEY (W_id) REFERENCES Warehouse(W_id)
 );
+
+CREATE OR REPLACE FUNCTION assign_del_staff() 
+RETURNS TRIGGER LANGUAGE PLPGSQL AS 
+$$ 
+    BEGIN
+        update vehicles set free='F' where vehicles.DS_id=NEW.ds_id;
+    return NEW;
+    END;
+$$;
+
+CREATE TRIGGER "assign delivery staff"
+after insert on orders
+for each row
+execute procedure assign_del_staff(); 
+

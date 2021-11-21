@@ -46,9 +46,9 @@ app.post("/getdetails",async(req,res)=>{
                 message:"error"
             })
         }
-        const data=await pool.query('select o.prod_id, o.arrival_date, o.sender, o.status, w.Wlocation from client c inner join orders o on c.client_id = o.client_id inner join warehouse w on w.w_id = o.w_id;',[client_id]);
+        const data=await pool.query('select*from order_details where client_id=$1;',[client_id]);
         for(let i=0;i<data.rows.length;i++){
-            data.rows[i]['delivered_date']=String(data.rows[i]['delivered_date']).slice(0,16);
+            data.rows[i]['arrival_date']=String(data.rows[i]['arrival_date']).slice(0,16);
         }
         res.json(data.rows)
     } catch (error) {
