@@ -20,6 +20,7 @@ import {
     Thead,
     Tr,
     useDisclosure,
+    Button,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { ShadowInput } from './ShadowInput';
@@ -33,11 +34,13 @@ interface IForm {
 
 const DBA = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [tabname,setTabname]=useState("");
     const [props,setProps]=useState([]);
     const [data, setData] = useState([]);
     const { register, handleSubmit } = useForm();
     const toast = useToast();
     const onSubmit = async (formData: IForm) => {
+        setTabname(String(formData.table_name));
         if (formData.values.length !==0) {
             try {
                 await fetch('http://localhost:5000/add_data', {
@@ -156,7 +159,7 @@ const DBA = () => {
                     <Modal
                         isOpen={isOpen}
                         onClose={onClose}
-                        size="2xl"
+                        size="7xl"
                         isCentered
                     >
                         <ModalOverlay />
@@ -164,7 +167,21 @@ const DBA = () => {
                             <ModalHeader>Client Data</ModalHeader>
                             <ModalCloseButton />
                             <ModalBody>
-                                <Table>
+                            </ModalBody>
+                        </ModalContent>
+                    </Modal>
+                    <Modal
+                        isOpen={isOpen}
+                        onClose={onClose}
+                        size="7xl"
+                        isCentered
+                    >
+                        <ModalOverlay />
+                        <ModalContent>
+                            <ModalHeader>{tabname}</ModalHeader>
+                            <ModalCloseButton />
+                            <ModalBody>
+                                <Table mb="5">
                                     <Thead>
                                         <Tr>
                                         {props.map((p)=>(
@@ -182,6 +199,9 @@ const DBA = () => {
                                         ))}
                                     </Tbody>
                                 </Table>
+                                <Button onClick={onClose} mb="2">
+                                    Close
+                                </Button>
                             </ModalBody>
                         </ModalContent>
                     </Modal>

@@ -3,7 +3,8 @@ DROP TYPE IF EXISTS details_type CASCADE;
 
 
 CREATE TABLE Client(
-    Client_ID varchar(10), 
+    Client_ID varchar(10),
+    password varchar, 
     name VARCHAR NOT NULL,
     ph_num varchar(10),
     email varchar,
