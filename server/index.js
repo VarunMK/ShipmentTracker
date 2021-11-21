@@ -83,6 +83,27 @@ app.post("/update_data",async(req,res)=>{
         })
     }
 });
+app.post("/update_order",async(req,res)=>{
+    try{
+        const {client_id,password,prod_id,partner_id,fragile,reciever}=req.body;
+        const c=await pool.query('select password from client where client_id=$1;',[client_id]);
+        if(password!=c.rows[0]['password']){
+            return res.status(201).json({
+                message:"error"
+            })
+        }
+        else{
+            if(prod_id!="" || partner_id!="" || (fragile!="True" || fragile!="False") || reciever!=""){
+                const q = await pool.query('insert into orders values()')
+            }
+        }
+        
+    }catch(err){
+        return res.status(201).json({
+            message:"error"
+        })
+    }
+});
 
 app.post("/getcolname",async(req,res)=>{
     try{

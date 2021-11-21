@@ -5,6 +5,7 @@ import { Route,Router, Switch } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import DBA from './components/DBA';
 import history from './history'
+import Order from './components/Order';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Switch>
           <Route path="/client" component={Client} />
           <Route path="/dba" component={DBA} />
+          <Route path="/order" component={Order} />
         </Switch>
       </Router>
       </ChakraProvider>
