@@ -65,6 +65,27 @@ const Client = () => {
             console.log(err);
         }
     };
+    const showDetails = async (c_id:String,password:String) => {
+        try {
+            const resp2 = await fetch('http://localhost:5000/getcolname', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({table_name:'Client Details'}),
+            });
+            const resp = await fetch('http://localhost:5000/getdetails', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({table_name:'Client Details',client_id:c_id,pass:password}),
+            });
+            const jsonData = await resp.json();
+            const jsonData2=await resp2.json();
+            setData(jsonData);
+            setProps(jsonData2);
+            console.log(jsonData2)
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     const onSubmit = async (formData: IForm) => {
         try {
@@ -185,6 +206,7 @@ const Client = () => {
                         style={{ textAlign: 'center' }}
                         size="lg"
                         width="25%"
+                        onClick={()=>{showDetails(client_id,pass);onOpen();}}
                     >
                         View Details
                     </Viewbutton>
