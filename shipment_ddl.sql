@@ -116,3 +116,4 @@ after insert on orders
 for each row
 execute procedure assign_del_staff(); 
 
+create view order_detail as select o.client_id,o.prod_id, o.arrival_date, o.sender, o.status, w.Wlocation from client c inner join orders o on c.client_id = o.client_id inner join warehouse w on w.w_id = o.w_id;

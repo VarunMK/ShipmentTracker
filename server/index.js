@@ -57,7 +57,7 @@ app.post("/getdetails", async (req, res) => {
       });
     }
     const data = await pool.query(
-      "select*from order_details where client_id=$1;",
+      "select*from order_detail where client_id=$1;",
       [client_id]
     );
     for (let i = 0; i < data.rows.length; i++) {
