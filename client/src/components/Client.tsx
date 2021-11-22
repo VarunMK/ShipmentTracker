@@ -206,6 +206,15 @@ const Client = () => {
                         style={{ textAlign: 'center' }}
                         size="lg"
                         width="25%"
+                        border="3px solid #4fc3f7;"
+                        _active={{
+                            bg: '#4fc3f7',
+                            color: 'white',
+                        }}
+                        _hover={{
+                            bg: '#4fc3f7',
+                            color: 'white',
+                        }}
                         onClick={()=>{showDetails(client_id,pass);onOpen();}}
                     >
                         View Details

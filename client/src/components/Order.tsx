@@ -21,7 +21,7 @@ interface IForm {
     rec_add:String,
 }
 
-const Client = () => {
+const Order = () => {
     //const { isOpen, onOpen, onClose } = useDisclosure();
     // const [data, setData] = useState([]);
     // const [client_id,setClient_id]=useState("");
@@ -185,4 +185,4 @@ const Client = () => {
     );
 };
 
-export default Client;
+export default Order;
