@@ -14,7 +14,7 @@ function App() {
         <Switch>
           <Route path="/client" component={Client} />
           <Route path="/dba" component={DBA} />
-          <Route path="/order" component={Order} />
+          <Route path="/orders" component={Order} />
         </Switch>
       </Router>
       </ChakraProvider>

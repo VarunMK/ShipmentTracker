@@ -82,7 +82,7 @@ const Client = () => {
                 fontWeight="bold"
                 style={{ textAlign: 'center' }}
             >
-                Add order(Confirm password again)
+                Place Orders
             </Text>
             <br />
             <Divider />
