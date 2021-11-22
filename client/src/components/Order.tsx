@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     Box,
     FormControl,
@@ -7,40 +7,26 @@ import {
     Divider,
     Flex,
     useToast,
-    Modal,
-    useDisclosure,
-    ModalOverlay,
-    ModalHeader,
-    ModalContent,
-    ModalCloseButton,
-    ModalBody,
-    Table,
-    Td,
-    Th,
-    Thead,
-    Tr,
-    Tbody,
-    Button,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { ShadowInput } from './ShadowInput';
 import Submitbutton from './SubmitButton';
-import Viewbutton from './ViewButton';
 
 interface IForm {
-    client_id: 'String';
-    Prod_id: 'String';
-    Partner_Id: 'String';
-    fragile: 'Boolean';
-    Reciever: 'String';
+    client_id: String,
+    password:String,
+    sender:String,
+    fragile: Boolean,
+    reciever: String,
+    rec_add:String,
 }
 
 const Client = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const [data, setData] = useState([]);
-    const [client_id,setClient_id]=useState("");
-    const [pass,setPassword]=useState("");
-    const [props, setProps] = useState([]);
+    //const { isOpen, onOpen, onClose } = useDisclosure();
+    // const [data, setData] = useState([]);
+    // const [client_id,setClient_id]=useState("");
+    // const [pass,setPassword]=useState("");
+    //const [props, setProps] = useState([]);
     const { register, handleSubmit } = useForm();
     const toast = useToast();
 
@@ -55,14 +41,14 @@ const Client = () => {
                 if (data.status === 201) {
                     toast({
                         duration: 2000,
-                        description: 'Error Updating Data!',
+                        description: 'Error Placing Order!',
                         status: 'error',
                         isClosable: true,
                     });
                 } else if (data.status === 200) {
                     toast({
                         duration: 2000,
-                        description: 'Successfully Updated!',
+                        description: 'Successfully Placed Order!',
                         status: 'success',
                         isClosable: true,
                     });
@@ -106,37 +92,43 @@ const Client = () => {
                     <FormLabel fontWeight="light" fontSize="md">
                         Client_ID
                     </FormLabel>
-                    <ShadowInput type="input" name="client_id" ref={register} onChange={(e: { target: { value: React.SetStateAction<string>; }; })=>{setClient_id(e.target.value)}} />
+                    <ShadowInput type="input" name="client_id" ref={register} />
                 </FormControl>
                 <FormControl id="password" isRequired>
                     <FormLabel fontWeight="light" fontSize="md">
                         Password
                     </FormLabel>
-                    <ShadowInput type="input" name="password" ref={register} onChange={(e: { target: { value: React.SetStateAction<string>; }; })=>{setPassword(e.target.value)}} />
+                    <ShadowInput type="input" name="password" ref={register}/>
                 </FormControl>
-                <FormControl id="name">
+                {/* <FormControl id="prod_id">
                     <FormLabel fontWeight="light" fontSize="md">
                         Prod ID
                     </FormLabel>
-                    <ShadowInput type="input" name="name" ref={register} />
-                </FormControl>
-                <FormControl id="ph_num">
+                    <ShadowInput type="input" name="prod_id" ref={register} />
+                </FormControl> */}
+                <FormControl id="sender">
                     <FormLabel fontWeight="light" fontSize="md">
-                        Partner_Id
+                        Sender
                     </FormLabel>
-                    <ShadowInput type="input" name="ph_num" ref={register} />
+                    <ShadowInput type="input" name="sender" ref={register} />
                 </FormControl>
-                <FormControl id="email">
+                <FormControl id="fragile">
                     <FormLabel fontWeight="light" fontSize="md">
                         Fragile?
                     </FormLabel>
-                    <ShadowInput type="input" name="email" ref={register} />
+                    <ShadowInput type="input" name="fragile" ref={register} />
                 </FormControl>
-                <FormControl id="addr">
+                <FormControl id="reciever">
                     <FormLabel fontWeight="light" fontSize="md">
                         Reciever
                     </FormLabel>
-                    <ShadowInput type="input" name="addr" ref={register} />
+                    <ShadowInput type="input" name="reciever" ref={register} />
+                </FormControl>
+                <FormControl id="rec_add">
+                    <FormLabel fontWeight="light" fontSize="md">
+                        Reciever Address
+                    </FormLabel>
+                    <ShadowInput type="input" name="rec_add" ref={register} />
                 </FormControl>
                 <br />
                 <Flex dir="row" justify="space-around">
@@ -149,7 +141,7 @@ const Client = () => {
                     >
                         Place Order
                     </Submitbutton>
-                    
+{/*                     
                     <Modal
                         isOpen={isOpen}
                         onClose={onClose}
@@ -186,7 +178,7 @@ const Client = () => {
                                 </Button>
                             </ModalBody>
                         </ModalContent>
-                    </Modal>
+                    </Modal> */}
                 </Flex>
             </form>
         </Box>
